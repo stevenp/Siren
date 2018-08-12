@@ -95,6 +95,9 @@ public final class Siren: NSObject {
     /// The current version of your app that is available for download on the App Store
     public internal(set) var currentAppStoreVersion: String?
 
+    /// The release date of the current version of the app
+    public internal(set) var currentVersionReleaseDate: Date?
+    
     internal var updaterWindow: UIWindow?
     fileprivate var appID: Int?
     fileprivate var lastVersionCheckPerformedOnDate: Date?
@@ -239,6 +242,8 @@ private extension Siren {
             return
         }
 
+        self.currentVersionReleaseDate = Date.fromString(currentVersionReleaseDate)
+        
         guard daysSinceRelease >= showAlertAfterCurrentVersionHasBeenReleasedForDays else {
             let message = "Your app has been released for \(daysSinceRelease) days, but Siren cannot prompt the user until \(showAlertAfterCurrentVersionHasBeenReleasedForDays) days have passed."
             self.printMessage(message)

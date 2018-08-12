@@ -17,15 +17,18 @@ extension Date {
         return components.day ?? 0
     }
 
-    static func days(since dateString: String) -> Int? {
+    static func fromString(_ dateString: String) -> Date? {
         let dateformatter = DateFormatter()
         dateformatter.locale = Locale(identifier: "en_US_POSIX")
         dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-
-        guard let releaseDate = dateformatter.date(from: dateString) else {
+        
+        return dateformatter.date(from: dateString)
+    }
+    
+    static func days(since dateString: String) -> Int? {
+        guard let date = Date.fromString(dateString) else {
             return nil
         }
-
-        return days(since: releaseDate)
+        return days(since: date)
     }
 }
