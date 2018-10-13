@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         window?.makeKeyAndVisible()
 
         setupSiren()
@@ -35,12 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        siren.appName = "Test App Name"
 
         // Optional - Change the various UIAlertController and UIAlertAction messaging. One or more values can be changes. If only a subset of values are changed, the defaults with which Siren comes with will be used.
-//        siren.alertMessaging = SirenAlertMessaging(updateTitle: "New Fancy Title",
-//                                                   updateMessage: "New message goes here!",
-//                                                   updateButtonMessage: "Update Now, Plz!?",
-//                                                   nextTimeButtonMessage: "OK, next time it is!",
-//                                                   skipVersionButtonMessage: "Please don't push skip, please don't!")
-        
+//        siren.alertMessaging = SirenAlertMessaging(updateTitle: NSAttributedString(string: "New Fancy Title"),
+//                                                   updateMessage: NSAttributedString(string: "New message goes here!"),
+//                                                   updateButtonMessage: NSAttributedString(string: "Update Now, Plz!?"),
+//                                                   nextTimeButtonMessage: NSAttributedString(string: "OK, next time it is!"),
+//                                                   skipVersionButtonMessage: NSAttributedString(string: "Please don't push skip, please don't!"))
+
         // Optional - Defaults to .Option
 //        siren.alertType = .option // or .force, .skip, .none
 
@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-        Siren.shared.checkVersion(checkType: .immediately)
+        Siren.shared.checkVersion(checkType: .daily)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

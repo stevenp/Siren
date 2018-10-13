@@ -20,10 +20,15 @@ import Foundation
 /// - revision: Revision release available: a.b.c.D
 /// - unknown: No information available about the update.
 public enum UpdateType: String {
+    /// Major release available: A.b.c.d
     case major
+    /// Minor release available: a.B.c.d
     case minor
+    /// Patch release available: a.b.C.d
     case patch
+    /// Revision release available: a.b.c.D
     case revision
+    /// No information available about the update.
     case unknown
 }
 
@@ -42,6 +47,8 @@ public protocol SirenDelegate: NSObjectProtocol {
     func sirenDidFailVersionCheck(error: Error)
 
     /// User presented with an update dialog.
+    ///
+    /// - Parameter alertType: The type of alert that was presented.
     func sirenDidShowUpdateDialog(alertType: Siren.AlertType)
 
     /// Siren performed a version check and the latest version was already installed.
@@ -65,7 +72,6 @@ public protocol SirenDelegate: NSObjectProtocol {
 // MARK: - SirenDelegate Protocol Extension
 
 public extension SirenDelegate {
-
     func sirenDidDetectNewVersionWithoutAlert(title: String, message: String, updateType: UpdateType) {
         printMessage()
     }
@@ -101,5 +107,4 @@ public extension SirenDelegate {
     private func printMessage(_ function: String = #function) {
         SirenLog("The default implementation of \(function) is being called. You can ignore this message if you do not care to implement this method in your `SirenDelegate` conforming structure.")
     }
-
 }
